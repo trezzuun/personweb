@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@900&display=swap');
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
 body {
     font-family: 'Unbounded', sans-serif;
     margin: 0;
@@ -11,28 +25,66 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    overflow: hidden;
 }
+
+.grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    z-index: 300;
+    transform: translateZ(0);
+    
+    &:before {
+      content: "";
+      top: -10rem;
+      left: -10rem;
+      width: calc(100% + 20rem);
+      height: calc(100% + 20rem);
+      z-index: 9999;
+      position: fixed;
+      background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+      opacity: 0.10;
+      pointer-events: none;
+      -webkit-animation: noise 1s steps(2) infinite;
+      animation: noise 1s steps(2) infinite;
+    }
+
+    @-webkit-keyframes noise {
+      to { transform: translate3d(-7rem,0,0) }
+    }
+
+    @keyframes noise {
+      0% { transform: translate3d(0,9rem,0) }
+      10% { transform: translate3d(-1rem,-4rem,0) }
+      20% { transform: translate3d(-8rem,2rem,0) }
+      30% { transform: translate3d(9rem,-9rem,0) }
+      40% { transform: translate3d(-2rem,7rem,0) }
+      50% { transform: translate3d(-9rem,-4rem,0) }
+      60% { transform: translate3d(2rem,6rem,0) }
+      70% { transform: translate3d(7rem,-8rem,0) }
+      80% { transform: translate3d(-9rem,1rem,0) }
+      90% { transform: translate3d(6rem,-5rem,0) }
+      to { transform: translate3d(-7rem,0,0) }
+    }
+  }
 
 #text1,
 #text2 {
-    position: absolute; /* Change from relative to absolute */
-    top: 50%; /* Position from the top edge at 50% */
-    left: 50%; /* Position from the left edge at 50% */
-    transform: translate(-50%, -50%); /* Center the element */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     display: inline-block;
-
     font-family: 'Unbounded', sans-serif;
     font-size: 20pt;
-
     text-align: center;
-
     user-select: none;
 }
 
-/* Styling for the welcome screen */
 .welcome-screen {
     position: fixed;
     top: 0;
@@ -49,13 +101,11 @@ body {
     color: #ffffff;
 }
 
-/* Light mode styles */
 body:not(.dark-mode) {
     background-color: #fff;
     color: #333;
 }
 
-/* Dark mode styles */
 body.dark-mode {
     background-color: #0e0e0e;
     color: #fff;
@@ -67,43 +117,35 @@ body.dark-mode {
     overflow: hidden;
     border-radius: 50%;
     margin-top: -150px;
-    /* Move the logo up by 190px */
+
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid rgba(255, 255, 255, 0.1);
-    /* Add a white outline with 10% opacity */
 }
 
 body.dark-mode .logo-container {
     border-color: rgba(0, 0, 0, 0.1);
-    /* Set the outline color for dark mode with 10% opacity */
 }
 
 .logo-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Ensure the logo covers the entire container */
 }
 
 .username {
     margin-top: 15px;
-    /* Adjusted margin to make them closer by 5px */
     color: #1a1a1a;
-    /* Set the text color */
     font-size: 18px;
-    /* Set the font size */
 }
 
 body:not(.dark-mode) .username {
     color: #dbdbdb;
-    /* Set the text color for light mode */
 }
 
 body.dark-mode .username {
     color: #1d1d1d;
-    /* Set the text color for dark mode */
 }
 
 .badges {
@@ -130,13 +172,13 @@ body.dark-mode .username {
     content: attr(data-tooltip);
     position: absolute;
     top: 30px;
-    /* Adjust this value for vertical positioning */
+
     left: 50%;
     transform: translateX(-50%);
     padding: 6px;
-    /* Adjust this value for a smaller tooltip size */
+
     background-color: var(--tooltip-background-light, #333);
-    /* Default background color for light mode */
+
     color: #fff;
     border-radius: 4px;
     opacity: 0;
@@ -144,28 +186,22 @@ body.dark-mode .username {
     transition: opacity 0.3s ease-in-out;
     width: auto;
     font-size: 12px;
-    /* Adjust this value for smaller text size */
+
     max-width: 150px;
-    /* Adjust this value for the maximum width of the tooltip */
 }
 
 [data-tooltip]::before,
 [data-tooltip] svg {
     fill: var(--svg-color-light, #fff);
-    /* Default color for light mode */
 }
 
-/* Dark Mode SVG color */
 body.dark-mode [data-tooltip]::before,
 body.dark-mode [data-tooltip] svg {
     fill: var(--svg-color-dark, #0e0e0e);
-    /* Color for dark mode */
 }
 
-/* Dark Mode Tooltip styles */
 body.dark-mode [data-tooltip]::before {
     background-color: var(--tooltip-background-dark, #111);
-    /* Background color for dark mode */
 }
 
 [data-tooltip]:hover::before {
@@ -180,13 +216,10 @@ body.dark-mode [data-tooltip]::before {
 
 .bio p {
     color: var(--bio-text-color-light, #cecece);
-    /* Default text color for light mode */
 }
 
-/* Dark Mode Bio text color */
 body.dark-mode .bio p {
     color: var(--bio-text-color-dark, #0e0e0e);
-    /* Text color for dark mode */
 }
 
 .location {
@@ -199,30 +232,22 @@ body.dark-mode .bio p {
 
 .location svg {
     width: 20px;
-    /* Adjust the width as needed */
     height: 20px;
-    /* Adjust the height as needed */
 }
 
-/* Adjust the icon color based on light/dark mode */
 .location svg {
     color: var(--text-color, #cecece);
-    /* Default icon color */
 }
 
 body.dark-mode .location svg {
     color: var(--text-color-dark, #0e0e0e);
-    /* Icon color for dark mode */
 }
 
-/* Style for the country text */
 .country {
     color: var(--text-color, #cecece);
-    /* Default text color */
     margin-left: 5px;
-
     max-width: 150px;
-    /* Adjust the max-width as needed */
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -231,7 +256,6 @@ body.dark-mode .location svg {
 
 body.dark-mode .country {
     color: var(--text-color-dark, #0e0e0e);
-    /* Text color for dark mode */
 }
 
 .toggle-icon {
@@ -263,7 +287,6 @@ body.dark-mode footer {
     color: #fff;
 }
 
-/* Media Query for smaller screens */
 @media only screen and (max-width: 320px) {
     footer {
         font-size: 0.6em;
@@ -314,8 +337,6 @@ body.dark-mode footer {
 }
 
 @media only screen and (min-width: 376px) and (max-width: 425px) {
-
-    /* Decrease footer font size by 3px */
     footer {
         font-size: 0.8em;
         margin-bottom: -15px;
@@ -334,8 +355,6 @@ body.dark-mode footer {
 }
 
 @media only screen and (min-width: 426px) and (max-width: 768px) {
-
-    /* Decrease footer font size by 3px */
     footer {
         font-size: 0.9em;
         margin-bottom: -15px;
@@ -343,9 +362,7 @@ body.dark-mode footer {
 
     .toggle-icon {
         width: 22px;
-        /* Adjusted width for larger size */
         height: 22px;
-        /* Adjusted height for larger size */
     }
 
     .box-container {
@@ -358,7 +375,6 @@ body.dark-mode footer {
 @media screen and (max-width: 1024px) {
     .box-container {
         width: 70%;
-        /* Adjusted width to 70% for screens <= 1024px */
     }
 
     footer {
@@ -371,11 +387,9 @@ body.dark-mode footer {
 @media screen and (max-width: 1440px) {
     .box-container {
         width: 60%;
-        /* Adjusted width to 60% for screens <= 1440px */
     }
 }
 
-/* Larger Toggle Button for 768px, 1024px, 1440px, and 2560px */
 @media only screen and (min-width: 769px) and (max-width: 2560px) {
     footer {
         font-size: 1.5em;
@@ -384,9 +398,7 @@ body.dark-mode footer {
 
     .toggle-icon {
         width: 30px;
-        /* Adjusted width for larger size */
         height: 30px;
-        /* Adjusted height for larger size */
     }
 
     .box-container {
@@ -411,14 +423,10 @@ body.dark-mode footer {
 
 .box-container {
     width: 90%;
-    /* Adjusted width to 90% of the viewport width */
     max-width: 481px;
-    /* Set a maximum width for larger screens */
     height: 381px;
     border-radius: 10px;
-    /* Make the box circular */
     overflow: hidden;
-    /* Ensure content is within the circular boundary */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background-color: #ffffff;
     display: flex;
@@ -449,18 +457,13 @@ body:not(.dark-mode) .box-container {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Light Mode Styles */
 body:not(.dark-mode) .play-pause-box {
-    background-color: #0e0e0e;
-    /* Light mode background color */
-    color: #cecece;
-    /* Light mode icon color */
+    background-color: #cecece;
+    color: #0e0e0e;
 }
 
 /* Dark Mode Styles */
 body.dark-mode .play-pause-box {
-    background-color: #cecece;
-    /* Dark mode background color */
-    color: #0e0e0e;
-    /* Dark mode icon color */
+    background-color: #0e0e0e;
+    color: #cecece;
 }

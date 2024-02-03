@@ -36,6 +36,8 @@
     </head>
     <body>
 
+        <div class="grain"></div>
+
         <div class="welcome-screen" id="welcomeScreen">
             <div id="container">
                 <span id="text1"></span>
@@ -118,20 +120,20 @@
                 </svg>
                 <p class="country">United States</p>
             </div>
+
+            <div class="music-controls">
+                <div class="play-pause-box" onclick="toggleMusic()">
+                  <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                  </svg>
+                  <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style="display: none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                  </svg>
+                </div>
+              </div>
+            </div>
         </div>
 
-        <div class="music-controls">
-            <div class="play-pause-box" onclick="toggleMusic()">
-              <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-              </svg>
-              <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style="display: none;">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        
         <audio id="background-music" onloadeddata="initAudio()" loop autoplay>
           <source src="/media/3ixkhh5bv1.mp3" type="audio/mp3">
           Your browser does not support the audio tag.
