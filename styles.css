@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@900&display=swap');
+
+body {
+    font-family: 'Unbounded', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s, color 0.5s;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+#text1,
+#text2 {
+    position: absolute; /* Change from relative to absolute */
+    top: 50%; /* Position from the top edge at 50% */
+    left: 50%; /* Position from the left edge at 50% */
+    transform: translate(-50%, -50%); /* Center the element */
+    width: 100%;
+    display: inline-block;
+
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20pt;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+/* Styling for the welcome screen */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #050505;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 10px;
+    color: #ffffff;
+}
+
+/* Light mode styles */
+body:not(.dark-mode) {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #0e0e0e;
+    color: #fff;
+}
+
+.logo-container {
+    width: 104px;
+    height: 104px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: -150px;
+    /* Move the logo up by 190px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    /* Add a white outline with 10% opacity */
+}
+
+body.dark-mode .logo-container {
+    border-color: rgba(0, 0, 0, 0.1);
+    /* Set the outline color for dark mode with 10% opacity */
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure the logo covers the entire container */
+}
+
+.username {
+    margin-top: 15px;
+    /* Adjusted margin to make them closer by 5px */
+    color: #1a1a1a;
+    /* Set the text color */
+    font-size: 18px;
+    /* Set the font size */
+}
+
+body:not(.dark-mode) .username {
+    color: #dbdbdb;
+    /* Set the text color for light mode */
+}
+
+body.dark-mode .username {
+    color: #1d1d1d;
+    /* Set the text color for dark mode */
+}
+
+.badges {
+    display: flex;
+    gap: 10px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+[data-tooltip] {
+    position: relative;
+    cursor: default;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 30px;
+    /* Adjust this value for vertical positioning */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px;
+    /* Adjust this value for a smaller tooltip size */
+    background-color: var(--tooltip-background-light, #333);
+    /* Default background color for light mode */
+    color: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    width: auto;
+    font-size: 12px;
+    /* Adjust this value for smaller text size */
+    max-width: 150px;
+    /* Adjust this value for the maximum width of the tooltip */
+}
+
+[data-tooltip]::before,
+[data-tooltip] svg {
+    fill: var(--svg-color-light, #fff);
+    /* Default color for light mode */
+}
+
+/* Dark Mode SVG color */
+body.dark-mode [data-tooltip]::before,
+body.dark-mode [data-tooltip] svg {
+    fill: var(--svg-color-dark, #0e0e0e);
+    /* Color for dark mode */
+}
+
+/* Dark Mode Tooltip styles */
+body.dark-mode [data-tooltip]::before {
+    background-color: var(--tooltip-background-dark, #111);
+    /* Background color for dark mode */
+}
+
+[data-tooltip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bio {
+    position: absolute;
+    margin-bottom: -100px;
+}
+
+.bio p {
+    color: var(--bio-text-color-light, #cecece);
+    /* Default text color for light mode */
+}
+
+/* Dark Mode Bio text color */
+body.dark-mode .bio p {
+    color: var(--bio-text-color-dark, #0e0e0e);
+    /* Text color for dark mode */
+}
+
+.location {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 345px;
+}
+
+.location svg {
+    width: 20px;
+    /* Adjust the width as needed */
+    height: 20px;
+    /* Adjust the height as needed */
+}
+
+/* Adjust the icon color based on light/dark mode */
+.location svg {
+    color: var(--text-color, #cecece);
+    /* Default icon color */
+}
+
+body.dark-mode .location svg {
+    color: var(--text-color-dark, #0e0e0e);
+    /* Icon color for dark mode */
+}
+
+/* Style for the country text */
+.country {
+    color: var(--text-color, #cecece);
+    /* Default text color */
+    margin-left: 5px;
+
+    max-width: 150px;
+    /* Adjust the max-width as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+}
+
+body.dark-mode .country {
+    color: var(--text-color-dark, #0e0e0e);
+    /* Text color for dark mode */
+}
+
+.toggle-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.5s ease-in-out, fill 0.5s;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+body.dark-mode .toggle-icon {
+    fill: #fff;
+    transform: rotate(180deg);
+}
+
+footer {
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+body.dark-mode footer {
+    color: #fff;
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 320px) {
+    footer {
+        font-size: 0.6em;
+        margin-bottom: -15px;
+    }
+
+    .toggle-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .box-container {
+        width: 85%;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .bio {
+        font-size: 0.6em;
+    }
+
+    .country {
+        font-size: 0.5em;
+    }
+
+    .location svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+    footer {
+        font-size: 0.7em;
+        margin-bottom: -15px;
+    }
+
+    .toggle-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .box-container {
+        width: 90%;
+        height: auto;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 425px) {
+
+    /* Decrease footer font size by 3px */
+    footer {
+        font-size: 0.8em;
+        margin-bottom: -15px;
+    }
+
+    .toggle-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .box-container {
+        width: 95%;
+        height: auto;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+
+    /* Decrease footer font size by 3px */
+    footer {
+        font-size: 0.9em;
+        margin-bottom: -15px;
+    }
+
+    .toggle-icon {
+        width: 22px;
+        /* Adjusted width for larger size */
+        height: 22px;
+        /* Adjusted height for larger size */
+    }
+
+    .box-container {
+        width: 40%;
+        height: auto;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .box-container {
+        width: 70%;
+        /* Adjusted width to 70% for screens <= 1024px */
+    }
+
+    footer {
+        font-size: 0.4em;
+        width: 60%;
+        margin-bottom: -15px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .box-container {
+        width: 60%;
+        /* Adjusted width to 60% for screens <= 1440px */
+    }
+}
+
+/* Larger Toggle Button for 768px, 1024px, 1440px, and 2560px */
+@media only screen and (min-width: 769px) and (max-width: 2560px) {
+    footer {
+        font-size: 1.5em;
+        margin-bottom: -15px;
+    }
+
+    .toggle-icon {
+        width: 30px;
+        /* Adjusted width for larger size */
+        height: 30px;
+        /* Adjusted height for larger size */
+    }
+
+    .box-container {
+        width: 50%;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .bio {
+        font-size: 1.2em;
+    }
+
+    .country {
+        font-size: 1.0em;
+    }
+
+    .location svg {
+        width: 27px;
+        height: 27px;
+    }
+}
+
+.box-container {
+    width: 90%;
+    /* Adjusted width to 90% of the viewport width */
+    max-width: 481px;
+    /* Set a maximum width for larger screens */
+    height: 381px;
+    border-radius: 10px;
+    /* Make the box circular */
+    overflow: hidden;
+    /* Ensure content is within the circular boundary */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body:not(.dark-mode) .box-container {
+    background-color: #0e0e0e;
+}
+
+.music-controls {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.play-pause-box {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Mode Styles */
+body:not(.dark-mode) .play-pause-box {
+    background-color: #0e0e0e;
+    /* Light mode background color */
+    color: #cecece;
+    /* Light mode icon color */
+}
+
+/* Dark Mode Styles */
+body.dark-mode .play-pause-box {
+    background-color: #cecece;
+    /* Dark mode background color */
+    color: #0e0e0e;
+    /* Dark mode icon color */
+}
