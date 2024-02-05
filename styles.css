@@ -6,9 +6,12 @@ html {
 }
 
 ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
 }
+
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
@@ -25,6 +28,19 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+img {
+    pointer-events: none;
 }
 
 .grain {
@@ -36,40 +52,74 @@ body {
     pointer-events: none;
     z-index: 300;
     transform: translateZ(0);
-    
+
     &:before {
-      content: "";
-      top: -10rem;
-      left: -10rem;
-      width: calc(100% + 20rem);
-      height: calc(100% + 20rem);
-      z-index: 9999;
-      position: fixed;
-      background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
-      opacity: 0.10;
-      pointer-events: none;
-      -webkit-animation: noise 1s steps(2) infinite;
-      animation: noise 1s steps(2) infinite;
+        content: "";
+        top: -10rem;
+        left: -10rem;
+        width: calc(100% + 20rem);
+        height: calc(100% + 20rem);
+        z-index: 9999;
+        position: fixed;
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+        opacity: 0.10;
+        pointer-events: none;
+        -webkit-animation: noise 1s steps(2) infinite;
+        animation: noise 1s steps(2) infinite;
     }
 
     @-webkit-keyframes noise {
-      to { transform: translate3d(-7rem,0,0) }
+        to {
+            transform: translate3d(-7rem, 0, 0)
+        }
     }
 
     @keyframes noise {
-      0% { transform: translate3d(0,9rem,0) }
-      10% { transform: translate3d(-1rem,-4rem,0) }
-      20% { transform: translate3d(-8rem,2rem,0) }
-      30% { transform: translate3d(9rem,-9rem,0) }
-      40% { transform: translate3d(-2rem,7rem,0) }
-      50% { transform: translate3d(-9rem,-4rem,0) }
-      60% { transform: translate3d(2rem,6rem,0) }
-      70% { transform: translate3d(7rem,-8rem,0) }
-      80% { transform: translate3d(-9rem,1rem,0) }
-      90% { transform: translate3d(6rem,-5rem,0) }
-      to { transform: translate3d(-7rem,0,0) }
+        0% {
+            transform: translate3d(0, 9rem, 0)
+        }
+
+        10% {
+            transform: translate3d(-1rem, -4rem, 0)
+        }
+
+        20% {
+            transform: translate3d(-8rem, 2rem, 0)
+        }
+
+        30% {
+            transform: translate3d(9rem, -9rem, 0)
+        }
+
+        40% {
+            transform: translate3d(-2rem, 7rem, 0)
+        }
+
+        50% {
+            transform: translate3d(-9rem, -4rem, 0)
+        }
+
+        60% {
+            transform: translate3d(2rem, 6rem, 0)
+        }
+
+        70% {
+            transform: translate3d(7rem, -8rem, 0)
+        }
+
+        80% {
+            transform: translate3d(-9rem, 1rem, 0)
+        }
+
+        90% {
+            transform: translate3d(6rem, -5rem, 0)
+        }
+
+        to {
+            transform: translate3d(-7rem, 0, 0)
+        }
     }
-  }
+}
 
 #text1,
 #text2 {
@@ -151,6 +201,7 @@ body.dark-mode .username {
 .badges {
     display: flex;
     gap: 10px;
+    position: relative;
 }
 
 .badge {
@@ -161,6 +212,7 @@ body.dark-mode .username {
     height: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    position: relative;
 }
 
 [data-tooltip] {
@@ -211,7 +263,8 @@ body.dark-mode [data-tooltip]::before {
 
 .bio {
     position: absolute;
-    margin-bottom: -100px;
+    margin-bottom: -80px;
+    overflow: hidden;
 }
 
 .bio p {
@@ -220,6 +273,48 @@ body.dark-mode [data-tooltip]::before {
 
 body.dark-mode .bio p {
     color: var(--bio-text-color-dark, #0e0e0e);
+}
+
+#spotify-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+
+    margin-bottom: -140px;
+    /* Optional: Add border radius to the image */
+}
+
+.corner-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex; /* Display icon and number in a flex container */
+    align-items: center; /* Center items vertically */
+    background-color: #fff; /* Set default background color */
+    padding: 5px;
+    border-radius: 4px;
+
+    margin-left: 6px;
+    margin-top: 6px;
+}
+
+/* Number styling */
+.corner-number {
+    color: #000; /* Set default number color */
+    font-size: 16px; /* Set the font size of the number */
+}
+
+/* Dark mode styles */
+.dark-mode .corner-box {
+    background-color: #333; /* Set dark mode background color */
+}
+
+.dark-mode #cornerIcon {
+    fill: #fff; /* Set dark mode icon color */
+}
+
+.dark-mode .corner-number {
+    color: #fff; /* Set dark mode number color */
 }
 
 .location {
@@ -316,6 +411,11 @@ body.dark-mode footer {
         width: 15px;
         height: 15px;
     }
+
+    #spotify-section img {
+        max-width: 250px;
+        /* Set the desired width for 320px screens */
+    }
 }
 
 @media only screen and (min-width: 321px) and (max-width: 375px) {
@@ -333,6 +433,11 @@ body.dark-mode footer {
         width: 90%;
         height: auto;
         margin-top: 10px;
+    }
+
+    #discord-status {
+        max-width: 300px;
+        /* Set the desired width for 320px screens */
     }
 }
 

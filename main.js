@@ -86,6 +86,7 @@ function handleClick() {
 // Attach click event listener to the whole document
 document.addEventListener("click", handleClick);
 
+/*
 // STOP PEOPLE FROM STEALING
 document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
@@ -110,7 +111,7 @@ document.onkeydown = function (e) {
   if (e.ctrlKey && e.keyCode == "C".charCodeAt(0)) {
     return false;
   }
-};
+};*/
 // END OF WELCOME SCREEN
 
 //DARK MODE/LIGHT MODE
