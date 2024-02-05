@@ -117,11 +117,29 @@ document.onkeydown = function (e) {
 document.addEventListener("DOMContentLoaded", function () {
   const toggleModeButton = document.getElementById("toggleMode");
   const body = document.body;
+  const darkModeKey = "darkModeEnabled";
 
+  // Check local storage for dark mode state
+  const isDarkModeEnabled = localStorage.getItem(darkModeKey) === "true";
+
+  // Set initial dark mode state
+  if (isDarkModeEnabled) {
+    body.classList.add("dark-mode");
+  } else {
+    body.classList.remove("dark-mode");
+  }
+
+  // Toggle dark mode on button click
   toggleModeButton.addEventListener("click", function () {
+    // Toggle the class
     body.classList.toggle("dark-mode");
+
+    // Update local storage
+    const newModeState = body.classList.contains("dark-mode");
+    localStorage.setItem(darkModeKey, newModeState.toString());
   });
 });
+
 
 //BIO TYPEWRITER EFFECT
 const bioTexts = [
@@ -179,15 +197,28 @@ const count = document.getElementById("count");
 incrementVisitsCount();
 
 function incrementVisitsCount() {
-    let visits;
+  let visits;
 
-    if (!localStorage.getItem("visits")) localStorage.setItem("visits", 1);
-    else {
-        visits = +localStorage.getItem("visits");
-        const incrementedCount = visits + 1;
+  if (!localStorage.getItem("visits")) localStorage.setItem("visits", 1);
+  else {
+    visits = +localStorage.getItem("visits");
+    const incrementedCount = visits + 1;
 
-        localStorage.setItem("visits", incrementedCount);
-    }
+    localStorage.setItem("visits", incrementedCount);
+  }
 
-    count.innerText = localStorage.getItem("visits");
+  count.innerText = localStorage.getItem("visits");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const notification = document.getElementById("notification");
+
+  // Show notification
+  setTimeout(() => {
+      notification.style.display = "flex";
+  }, 1000);
+
+  closeBtn.addEventListener("click", function () {
+    notification.style.display = "none";
+});
+});
