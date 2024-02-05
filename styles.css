@@ -284,13 +284,54 @@ body.dark-mode .bio p {
     /* Optional: Add border radius to the image */
 }
 
+.view-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    /* Display icon and number in a flex container */
+    align-items: center;
+    /* Center items vertically */
+    background-color: #fff;
+    /* Set default background color */
+    padding: 5px;
+    border-radius: 4px;
+
+    margin-right: 6px;
+    margin-top: 6px;
+
+    height: 20px;
+}
+
+/* Number styling */
+.view-number {
+    color: #000;
+    /* Set default number color */
+    font-size: 16px;
+    /* Set the font size of the number */
+}
+
+/* Dark mode styles */
+.dark-mode .view-box {
+    background-color: #333;
+    /* Set dark mode background color */
+}
+
+.dark-mode .view-number {
+    color: #fff;
+    /* Set dark mode number color */
+}
+
 .corner-box {
     position: absolute;
     top: 0;
     left: 0;
-    display: flex; /* Display icon and number in a flex container */
-    align-items: center; /* Center items vertically */
-    background-color: #fff; /* Set default background color */
+    display: flex;
+    /* Display icon and number in a flex container */
+    align-items: center;
+    /* Center items vertically */
+    background-color: #fff;
+    /* Set default background color */
     padding: 5px;
     border-radius: 4px;
 
@@ -300,21 +341,26 @@ body.dark-mode .bio p {
 
 /* Number styling */
 .corner-number {
-    color: #000; /* Set default number color */
-    font-size: 16px; /* Set the font size of the number */
+    color: #000;
+    /* Set default number color */
+    font-size: 16px;
+    /* Set the font size of the number */
 }
 
 /* Dark mode styles */
 .dark-mode .corner-box {
-    background-color: #333; /* Set dark mode background color */
+    background-color: #333;
+    /* Set dark mode background color */
 }
 
 .dark-mode #cornerIcon {
-    fill: #fff; /* Set dark mode icon color */
+    fill: #fff;
+    /* Set dark mode icon color */
 }
 
 .dark-mode .corner-number {
-    color: #fff; /* Set dark mode number color */
+    color: #fff;
+    /* Set dark mode number color */
 }
 
 .location {
