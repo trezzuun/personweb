@@ -140,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 //BIO TYPEWRITER EFFECT
 const bioTexts = [
   "I take the risk.",
@@ -215,10 +214,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Show notification
   setTimeout(() => {
-      notification.style.display = "flex";
+    notification.style.display = "flex";
   }, 1000);
+
+  /*// Hide notification after 10 seconds
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, 10000);*/
 
   closeBtn.addEventListener("click", function () {
     notification.style.display = "none";
-});
+  });
 });

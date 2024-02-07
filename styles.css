@@ -45,12 +45,14 @@ body {
     top: 1%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(253, 21, 21, 0.3); /* Light red background with 50% opacity */
+    background-color: rgba(253, 21, 21, 0.3);
+    /* Light red background with 50% opacity */
     color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    outline: 1px solid rgb(255, 35, 35); /* Red outline */
+    outline: 1px solid rgb(255, 35, 35);
+    /* Red outline */
 
     width: 390px;
 }
@@ -476,10 +478,18 @@ body.dark-mode footer {
         height: 20px;
     }
 
-    .box-container {
+    .box-container,
+    .social-container {
         width: 85%;
         height: auto;
         margin-top: 10px;
+    }
+
+    .social-container img {
+        width: 27px;
+        height: 27px;
+        margin: 0 auto;
+        /* Adjust the spacing for the smallest screens */
     }
 
     .bio {
@@ -499,6 +509,26 @@ body.dark-mode footer {
         max-width: 250px;
         /* Set the desired width for 320px screens */
     }
+
+    .notification {
+        max-width: 230px;
+        max-height: 50px;
+    }
+
+    .notification svg {
+        width: 50px;
+        height: 35px;
+        margin-left: 2px;
+    }
+
+    .notification p {
+        font-size: 11px;
+        margin-right: 40px;
+    }
+
+    .close-btn {
+        margin-right: -8px;
+    }
 }
 
 @media only screen and (min-width: 321px) and (max-width: 375px) {
@@ -512,15 +542,43 @@ body.dark-mode footer {
         height: 18px;
     }
 
-    .box-container {
+    .box-container,
+    .social-container {
         width: 90%;
         height: auto;
         margin-top: 10px;
     }
 
+    .social-container img {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        /* Adjust the spacing for the smallest screens */
+    }
+
     #discord-status {
         max-width: 300px;
         /* Set the desired width for 320px screens */
+    }
+
+    .notification {
+        max-width: 230px;
+        max-height: 50px;
+    }
+
+    .notification svg {
+        width: 50px;
+        height: 35px;
+        margin-left: 2px;
+    }
+
+    .notification p {
+        font-size: 11px;
+        margin-right: 40px;
+    }
+
+    .close-btn {
+        margin-right: -8px;
     }
 }
 
@@ -535,10 +593,38 @@ body.dark-mode footer {
         height: 16px;
     }
 
-    .box-container {
+    .box-container,
+    .social-container {
         width: 95%;
         height: auto;
         margin-top: 10px;
+    }
+
+    .social-container img {
+        width: 35px;
+        height: 35px;
+        margin: 0 auto;
+        /* Adjust the spacing for the smallest screens */
+    }
+
+    .notification {
+        max-width: 300px;
+        max-height: 50px;
+    }
+
+    .notification svg {
+        width: 40px;
+        height: 30px;
+        margin-left: 6px;
+    }
+
+    .notification p {
+        font-size: 11px;
+        margin-right: 40px;
+    }
+
+    .close-btn {
+        margin-right: -5px;
     }
 }
 
@@ -553,7 +639,8 @@ body.dark-mode footer {
         height: 22px;
     }
 
-    .box-container {
+    .box-container,
+    .social-container {
         width: 40%;
         height: auto;
         margin-top: 20px;
@@ -561,7 +648,9 @@ body.dark-mode footer {
 }
 
 @media screen and (max-width: 1024px) {
-    .box-container {
+
+    .box-container,
+    .social-container {
         width: 70%;
     }
 
@@ -573,7 +662,9 @@ body.dark-mode footer {
 }
 
 @media screen and (max-width: 1440px) {
-    .box-container {
+
+    .box-container,
+    .social-container {
         width: 60%;
     }
 }
@@ -589,7 +680,8 @@ body.dark-mode footer {
         height: 30px;
     }
 
-    .box-container {
+    .box-container,
+    .social-container {
         width: 50%;
         height: auto;
         margin-top: 20px;
@@ -622,13 +714,58 @@ body.dark-mode footer {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 body:not(.dark-mode) .box-container {
     background-color: #0e0e0e;
+}
+
+.social-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 481px;
+    height: 61px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    margin-top: 250px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.social-logo {
+    width: 35px;
+    height: 35px;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+body:not(.dark-mode) .social-container {
+    background-color: #0e0e0e;
+    color: #d6d6d6;
+}
+
+body.dark-mode .social-container {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.dark-mode .social-logo {
+    filter: invert(1);
+}
+
+.light-mode .social-logo {
+    filter: invert(1);
 }
 
 .music-controls {
@@ -650,7 +787,6 @@ body:not(.dark-mode) .play-pause-box {
     color: #0e0e0e;
 }
 
-/* Dark Mode Styles */
 body.dark-mode .play-pause-box {
     background-color: #0e0e0e;
     color: #cecece;
