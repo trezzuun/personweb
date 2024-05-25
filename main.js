@@ -217,10 +217,10 @@ document.addEventListener("DOMContentLoaded", function () {
     notification.style.display = "flex";
   }, 1000);
 
-  // Hide notification after 10 seconds
+  /*// Hide notification after 10 seconds
   setTimeout(() => {
     notification.style.display = "none";
-  }, 5000);
+  }, 10000);*/
 
   closeBtn.addEventListener("click", function () {
     notification.style.display = "none";
