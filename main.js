@@ -77,6 +77,16 @@ function animate() {
 animate();
 // END OF FUSING TEXT EFFECT
 
+const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", (e) => {
+  let leftPosition = e.pageX - 1;
+  let topPosition = e.pageY - 1;
+
+  cursor.style.left = leftPosition + "px";
+  cursor.style.top = topPosition + "px";
+})
+
 // Function to handle click event and hide the welcome screen
 function handleClick() {
   document.getElementById("welcomeScreen").style.display = "none"; // Hide the welcome screen

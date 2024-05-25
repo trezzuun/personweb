@@ -37,6 +37,16 @@ body {
     /* Internet Explorer/Edge */
     user-select: none;
     /* Non-prefixed version, currently supported by Chrome and Opera */
+
+    cursor: url('social/crosshair.png'), auto;
+}
+
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, 50%);
+    pointer-events: none;
 }
 
 .notification {
